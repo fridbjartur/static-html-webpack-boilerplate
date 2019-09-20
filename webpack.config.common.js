@@ -30,6 +30,14 @@ module.exports = {
         test: /\.html$/,
         loader: 'raw-loader',
       },
+      {
+        test: /\.(jpe?g|png|gif|svg|mp4)$/i,
+        loader: 'file-loader',
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
     ],
   },
   plugins: [
