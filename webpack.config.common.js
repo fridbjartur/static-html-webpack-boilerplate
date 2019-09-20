@@ -4,7 +4,7 @@ const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
-const generateHTMLPlugins = () => glob.sync('./src/**/*.html').map(
+const generateHTMLPlugins = () => glob.sync('./src/**/*.html', { ignore: './src/partials/*.html' }).map(
   dir => new HTMLWebpackPlugin({
     filename: path.basename(dir), // Output
     template: dir, // Input
@@ -28,7 +28,10 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        loader: 'raw-loader',
+        loader: 'html-loader',
+        options: {
+          interpolate: true,
+        },
       },
       {
         test: /\.(jpe?g|png|gif|svg|mp4)$/i,
