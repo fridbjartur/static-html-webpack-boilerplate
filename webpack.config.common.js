@@ -8,6 +8,10 @@ const generateHTMLPlugins = () => glob.sync('./src/**/*.html', { ignore: './src/
   dir => new HTMLWebpackPlugin({
     filename: path.basename(dir), // Output
     template: dir, // Input
+    minify: {
+     removeComments: true,
+     collapseWhitespace: true,
+    },
   }),
 );
 
