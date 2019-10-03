@@ -2,7 +2,7 @@
 const disableFavicons = true;
 const disableHandlebars = true;
 
-// Set to false if you want to export without locales.
+// Function to disable plugin.
 function DisablePlugin() {
 	this.apply = function() { };
 }
