@@ -1,7 +1,17 @@
+// Set to true if you want to export without specific plugin.
+const disableFavicons = true;
+const disableHandlebars = true;
+
+// Set to false if you want to export without locales.
+function DisablePlugin() {
+	this.apply = function() { };
+}
+
 const glob = require('glob');
 const path = require('path');
 
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const generateHTMLPlugins = () => glob.sync('./src/**/*.html', { ignore: './src/partials/**' }).map(
@@ -67,13 +77,36 @@ module.exports = {
 			{
 				from: './src/static/',
 				to: './static/',
+				ignore: 'favicon.*',
 			},
 		]),
-		// new HTMLWebpackPlugin({
-		//   template: 'src/index.hbs',
-		//   // templateParameters: require(`./file.json`)
-		// }),
+		disableHandlebars ? new DisablePlugin() : new HTMLWebpackPlugin({
+			template: 'src/index.hbs',
+			// templateParameters: require(`./file.json`)
+		}),
 		...generateHTMLPlugins(),
+		disableFavicons ? new DisablePlugin() : new FaviconsWebpackPlugin({
+			logo: './src/static/favicon.png',
+			cache: true,
+			outputPath: './static/',
+			// Prefix path for generated assets
+			prefix: './static/',
+			inject: false,
+
+			// Favicons configuration options
+			favicons: {
+				appName: 'my-app',
+				appDescription: 'My awesome App',
+				developerName: 'MIDBERG',
+				developerURL: null, // prevent retrieving from the nearest package.json
+				background: '#fff',
+				theme_color: '#fff',
+				icons: {
+					coast: false,
+					yandex: false,
+				},
+			},
+		}),
 	],
 	stats: {
 		colors: true,
