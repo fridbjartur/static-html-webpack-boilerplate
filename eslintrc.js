@@ -10,13 +10,14 @@ module.exports = {
 		'space-before-function-paren': ['error', {
 			'anonymous': 'never',
 			'named': 'never',
-			'asyncArrow': 'always'
-		}]
+			'asyncArrow': 'always',
+		}],
 	},
-	env: {
-		node: true,
-		es6: true,
+	'parser': 'babel-eslint',
+	'env': {
+		'browser': true,
+		'es6': true,
 	},
+	'presets': [['env', { 'targets': { 'node': 'current' } }]],
 	extends: 'eslint:recommended',
-	parser: 'babel-eslint',
 };

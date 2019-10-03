@@ -1,0 +1,39 @@
+{
+	"noImplicitAny": false,
+	"rules": {
+		"quotemark": [true, "single"],
+		"indent": [false, "tabs"],
+		"no-console": {
+			"severity": "warning",
+			"options": ["debug", "info", "log", "time", "timeEnd", "trace"]
+		},
+		"ordered-imports": [
+			true,
+			{
+				"grouped-imports": true,
+				"groups": [
+					{
+						"name": "Initial imports",
+						"match": "^(reflect-metadata|zone\\.js)",
+						"order": 0
+					},
+					{
+						"name": "Parent dir",
+						"match": "^\\.\\.",
+						"order": 50
+					},
+					{
+						"name": "Current dir",
+						"match": "^\\.",
+						"order": 50
+					},
+					{
+						"name": "Any others",
+						"match": ".",
+						"order": 10
+					}
+				]
+			}
+		]
+	}
+}

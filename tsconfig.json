@@ -1,0 +1,13 @@
+{
+	"compilerOptions": {
+		"lib": ["es5", "es6", "dom"],
+		"noImplicitAny": true,
+		"module": "es6",
+		"target": "es5",
+		"outDir": "./dist/",
+		"removeComments": true,
+		"allowJs": true
+	},
+	"include": ["src"],
+	"exclude": ["node_modules", "**/*.spec.ts"]
+}
