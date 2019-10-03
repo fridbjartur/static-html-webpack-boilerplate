@@ -46,18 +46,8 @@ module.exports = {
 			},
 			{
 				test: /\.js$/,
+				use: 'babel-loader',
 				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: [
-							['env', {
-								modules: false,
-								useBuiltIns: 'usage',
-							}],
-						],
-					},
-				},
 			},
 			{
 				test: /\.hbs$/,
