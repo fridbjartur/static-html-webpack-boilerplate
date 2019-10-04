@@ -1,6 +1,6 @@
 // Set to true if you want to export without specific plugin.
-const disableFavicons = true;
-const disableHandlebars = true;
+const enableFavicons = false;
+const enableHandlebars = false;
 
 // Function to disable plugin.
 function DisablePlugin() {
@@ -90,12 +90,12 @@ module.exports = {
 				ignore: 'favicon.*',
 			},
 		]),
-		disableHandlebars ? new DisablePlugin() : new HTMLWebpackPlugin({
+		!enableHandlebars ? new DisablePlugin() : new HTMLWebpackPlugin({
 			template: 'src/index.hbs',
 			// templateParameters: require(`./file.json`)
 		}),
 		...generateHTMLPlugins(),
-		disableFavicons ? new DisablePlugin() : new FaviconsWebpackPlugin({
+		!enableFavicons ? new DisablePlugin() : new FaviconsWebpackPlugin({
 			logo: './src/static/favicon.png',
 			cache: true,
 			outputPath: './static/',
